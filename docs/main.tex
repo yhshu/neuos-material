@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\usepackage{authblk}
+\usepackage[UTF8]{ctex}
+
+\usepackage{authblk}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{hyperref}
+
+\usepackage{framed}
+\usepackage{color}
+\usepackage[framemethod=tikz]{mdframed}
+
+\lstset{
+  breaklines,
+  columns=flexible}
+
+\makeatletter
+\def\UrlAlphabet{%
+      \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
+      \do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
+      \do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
+      \do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+      \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
+      \do\Y\do\Z}
+\def\UrlDigits{\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\0}
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\g@addto@macro{\UrlBreaks}{\UrlAlphabet}
+\g@addto@macro{\UrlBreaks}{\UrlDigits}
+\makeatother
+
+\begin{document}
+
+\title{Linux\ 操作系统分析 实验文档}
+\author{}
+\date{2019 年 10 月}
+\maketitle
+
+\input{introduction} % 实验介绍
+\input{chapter1}
+\input{chapter2}
+\input{chapter3}
+\input{chapter4}
+\input{chapter5}
+\input{chapter6}
+\input{chapter7}
+\input{chapter8}
+
+% 参考文献
+% \bibliographystyle{plain}
+% \bibliography{references}
+
+\end{document}

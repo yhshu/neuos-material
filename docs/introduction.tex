@@ -1,0 +1,96 @@
+\section{实验介绍}
+
+本实验包含以下内容。
+
+\begin{itemize}
+	\item 实验一\ 初识实验环境
+	\item 实验二\ 内核引导启动
+	\item 实验三\ VGA 与串行端口
+	\item 实验四\ 内存管理与分页
+	\item 实验五\ 缺页异常
+	\item 实验六\ 中断与系统调用
+	\item 实验七\ 进程控制
+	\item 实验八\ 文件系统
+\end{itemize}
+
+\subsection{NEUOS 简介}
+
+本实验代码由 NEUOS 与 Linux v0.11 组成。 NEUOS 是一个基于 Linux v0.11 内核的教学用操作系统。通过学习早期 Linux 内核，排除当前内核中复杂而庞大的实现细节，我们能较为完整地了解内核实现原理。
+
+由于 Linux 下的 C 语言开发通常使用 AT\&T 内联汇编，NEUOS 中的汇编代码为 AT\&T 格式。本实验需要一些简单的汇编语言知识。
+
+\subsection{源码}
+
+运行 NEUOS 需要在 Linux 环境下。我们提供了一个虚拟机镜像 “NEUOS Lab Environment” 用作实验环境，详见实验一关于实验环境的描述。实验环境的 Documents 目录中内置了下列三份源码，本实验在实验材料 neuos-material 中进行。
+
+\begin{itemize}
+	\item NEUOS ：https://github.com/VOID001/neu-os
+	\item Linux 0.11 ：https://github.com/lzw429/Linux-0.11
+	\item 实验材料：https://github.com/lzw429/neuos-material
+\end{itemize}
+
+\subsection{运行（README）}
+
+NEUOS 源码使用 make 构建。打开终端，使用 cd 切换到 neu-os 目录，键入
+
+\begin{lstlisting}
+    make
+\end{lstlisting}
+
+make 将生成软盘镜像作为启动盘，这是启动 NEUOS 所必需的。
+
+生成镜像并使用有调试功能的 Bochs 运行 NEUOS，在命令行键入：
+
+\begin{lstlisting}
+	make run_bochs
+\end{lstlisting}
+
+或者
+
+\begin{lstlisting}
+	make
+	bochs -q
+\end{lstlisting}
+
+生成镜像并使用 QEMU 运行 NEUOS，在命令行键入：
+
+\begin{lstlisting}
+	make run
+\end{lstlisting}
+
+每次修改代码后，命令行键入：
+
+\begin{lstlisting}
+	make clean
+	make
+\end{lstlisting}
+
+即可重新构建。
+
+关于 QEMU 与 Bochs 的运行参数，请查看 makefile.
+
+\subsection{预备}
+
+完成实验所需的必备知识包括对计算机组成原理、数据结构与算法的掌握，如果了解AT\&T 汇编语言或 GNU 工具链，完成本实验会相对轻松。
+
+\subsection{学习建议}
+
+本实验文档中的“实验资料”，并非只为有限的实验内容而编写。实验资料对读者理解 Linux 的早期内核大有裨益。在开始每一项实验前，我们建议首先浏览写在“实验内容”后的“实验资料”。
+
+在内核引导启动部分，建议着重关注操作系统如何与 BIOS 协调将计算机启动；在进程调度与文件系统部分，建议着重关注数据结构与算法的设计。
+
+
+\subsection{参考资料}
+
+\begin{itemize}
+	\item 《Linux 内核完全注释》赵炯（对于理解 Linux 0.11 十分必要）
+	\item 《Linux 内核设计与实现》Robert Love
+	\item 《深入理解 Linux 内核》Daniel Bovet, Marco Cesati
+	\item 英特尔® 64 位和 IA-32 架构开发人员手册 \footnote{\url{https://software.intel.com/en-us/articles/intel-sdm}} 
+\end{itemize}
+
+\subsection{实验反馈}        
+
+请将您在本实验中遇到的疑惑或任何意见与建议反馈给我们\footnote{\url{https://github.com/lzw429/neuos-guide/issues}}。
+
+
