@@ -14,11 +14,11 @@
 
 内核程序通过进程表对进程进行管理，每个进程在进程表中占有一项。
 
-Linux 中，进程表项是一个 task\_struct 任务结构指针（定义在头文件 exp7/include/linux/sched.h）。它被称为进程控制块（Process Control Block）或进程描述符（Process Descriptor）。其中保存着用于控制和管理进程的所有信息。
+Linux 中，进程表项是一个 task\_struct 任务结构指针（定义在头文件 exp7/include/linux/sched.h）。它被称为\textbf{进程控制块}（Process Control Block）或进程描述符（Process Descriptor）。其中保存着用于控制和管理进程的所有信息。
 
-当一个进程在执行时，CPU 的所有寄存器中的值、进程的状态以及堆栈中的内容被称为该进程的上下文。当内核需要切换到另一个进程时，它需要保存当前进程的所有状态，即保存当前进程的上下文，以便在再次执行该进程时，能恢复到切换时的状态。Linux 中，当前进程上下文均保存在进程的任务数据结构中。发生中断时，内核就在被中断进程的上下文中，在内核态下执行中断服务例程。
+当一个进程在执行时，CPU 的所有寄存器中的值、进程的状态以及堆栈中的内容被称为该进程的\textbf{上下文}（context）。当内核需要切换到另一个进程时，它需要保存当前进程的所有状态，即保存当前进程的上下文，以便在再次执行该进程时，能恢复到切换时的状态。Linux 中，当前进程上下文均保存在进程的任务数据结构中。发生中断时，内核就在被中断进程的上下文中，在内核态下执行中断服务例程。
 
-任务状态段（Task State Segment）是一个系统段（x86 架构的一部分，不是完全依靠软件实现），是保存任务信息的数据结构，包括寄存器状态、I/O 端口权限、内层堆栈指针、之前的 TSS 链接等信息。它在 Linux 中以结构体 tss\_struct（定义在 exp7/include/linux/sched.h 中）描述。任务状态段被内核用于进程切换。
+\textbf{任务状态段}（Task State Segment）是一个系统段（x86 架构的一部分，不是完全依靠软件实现），是保存任务信息的数据结构，包括寄存器状态、I/O 端口权限、内层堆栈指针、之前的 TSS 链接等信息。它在 Linux 中以结构体 tss\_struct（定义在 exp7/include/linux/sched.h 中）描述。任务状态段被内核用于进程切换。
 
 \subsection{进程运行状态}
 
@@ -31,15 +31,15 @@ Linux 中，进程表项是一个 task\_struct 任务结构指针（定义在头
     \label{fig:进程状态及转换关系}
 \end{figure}
 
-就绪状态/运行状态 TASK\_RUNNING：进程可在内核态运行，也可以在用户态运行。图中的用户运行态、内核运行态和就绪态都处于 TASK\_RUNNING 状态。
+\textbf{就绪状态/运行状态} TASK\_RUNNING：进程可在内核态运行，也可以在用户态运行。图中的用户运行态、内核运行态和就绪态都处于 TASK\_RUNNING 状态。
 
-可中断睡眠状态 TASK\_INTERRUPTIBLE：系统不会调度该进程执行。当系统产生了中断或者释放了进程正在等待的资源，或者进程收到一个信号，都可以唤醒进程，转换到就绪状态。
+\textbf{可中断睡眠状态} TASK\_INTERRUPTIBLE：系统不会调度该进程执行。当系统产生了中断或者释放了进程正在等待的资源，或者进程收到一个信号，都可以唤醒进程，转换到就绪状态。
 
-不可中断睡眠状态 TASK\_UNINTERRUPTIBLE：与可中断睡眠状态类似。区别是处于该状态的进程只有被 wake\_up 函数 (定义在 exp7/kernel/sched.c) 明确唤醒时才能转换到就绪状态。
+\textbf{不可中断睡眠状态} TASK\_UNINTERRUPTIBLE：与可中断睡眠状态类似。区别是处于该状态的进程只有被 wake\_up 函数 (定义在 exp7/kernel/sched.c) 明确唤醒时才能转换到就绪状态。
 
-僵死状态 TASK\_ZOMBIE：进程已停止运行，但其父进程还未询问其状态时，进程僵死。
+\textbf{僵死状态} TASK\_ZOMBIE：进程已停止运行，但其父进程还未询问其状态时，进程僵死。
 
-暂停状态 TASK\_STOPPED：进程收到信号 SIGSTOP、SIGTSTP、SIGTTIN 或 SIGTTOU 时会进入暂停状态。
+\textbf{暂停状态} TASK\_STOPPED：进程收到信号 SIGSTOP、SIGTSTP、SIGTTIN 或 SIGTTOU 时会进入暂停状态。
 
 \subsection{进程初始化}
 

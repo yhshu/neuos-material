@@ -34,7 +34,7 @@ MINIX 文件系统与标准 UNIX 的文件系统基本相同，由 6 个部分�
 
 文件中的数据是放在磁盘块的数据区中的，而一个文件名则通过对应的 i 节点与这些数据磁盘块相联系。
 
-\subsubsection{文件的分类}
+\subsection{文件的分类}
 
 类 UNIX 操作系统中的文件通常分类 6 类。在 Linux 的 Shell 下执行 “ls -l” 命令，可从文件状态信息中查看文件的类型。
 
@@ -47,13 +47,13 @@ MINIX 文件系统与标准 UNIX 的文件系统基本相同，由 6 个部分�
     \item \textbf{块设备}（’b’）文件用于访问像硬盘、软盘等设备。
 \end{enumerate}
 
-\subsubsection{高速缓存}
+\subsection{高速缓存}
 
 CPU 中的高速缓存（cache）是用于减少处理器访问内存所需平均时间的部件，其容量远小于内存，但速度却可以接近处理器频率。
 
 Linux 内核实现高速缓存的程序是 Linux-0.11/fs/buffer.c。文件系统中其他程序通过指定需要访问的设备号和数据逻辑块号来调用它的块读写函数。
 
-\subsubsection{数据结构定义与函数声明}
+\subsection{数据结构定义与函数声明}
 
 neu-os 文件系统的数据结构定义与函数声明在 neu-os/include/linux/fs.h 中。
 
